@@ -2,7 +2,7 @@
 Если строка, которую передали в функцию (первый параметр - str) меньше или равна указанной длине (второй параметр - maxLength),
 то функция вернёт true. Если строка длиннее, то функция вернёт false.
 */
-const checkLengthString = function (str, maxLength) {
+const checkLengthString = (str, maxLength) => {
   if (str.length <= maxLength) {
     return true;
   }
@@ -37,3 +37,21 @@ checkStringIsPalindrom('Кучук');
 checkStringIsPalindrom('ДОВОД');
 checkStringIsPalindrom('Повод');
 
+/*Функция принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа.
+ Если в строке нет ни одной цифры, функция должна вернуть NaN
+*/
+const convertStringToNumber = (str) => {
+  let result = '';
+  for (let i = 0; i < str.length; i ++) {
+    if (!Number.isNaN(parseInt(str[i], 10))) {
+      result += str[i];
+    }
+  }
+  return parseInt(result, 10);
+};
+
+convertStringToNumber ('2023');
+convertStringToNumber ('ECMAScript 2022');
+convertStringToNumber ('агент 007');
+convertStringToNumber ('1 кефир, 0.5 батона');
+convertStringToNumber ('а я томат');
