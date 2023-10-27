@@ -13,7 +13,10 @@ const NAMES = ['Кирилл', 'Александр', 'Ольга', 'Олег', '
   'Владимир', 'Сергей', 'Марина', 'Константин', 'Дмитрий', 'Иван', 'Максим', 'Руслан', 'Андрей', 'Евгений', 'Виктор',
   'Снежана', 'Мария', 'Валентина', 'Светлана'];
 
-// функцию получения случайного числа я честно взял из "Учебный проект: нас - орда". Здесь сам ничего не придумывал
+const OBJECT_ARRAY_COUNTER = 35;
+
+/* функцию получения случайного числа я честно взял из: "Учебный проект: нас - орда". Здесь сам ничего не придумывал.
+Если такой вариант не проходит, ну тогда буду пытаться изобретать свой велосипед*/
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -35,4 +38,7 @@ const createTemporaryData = () => ({
   }]
 });
 
-console.log(createTemporaryData());
+//Метод создаёт массив объектов, длина которого задана константой OBJECT_ARRAY_COUNTER
+const arrayOfObjects = Array.from({length: OBJECT_ARRAY_COUNTER}, createTemporaryData);
+
+//console.log(arrayOfObjects);
