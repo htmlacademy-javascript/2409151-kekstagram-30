@@ -40,5 +40,3 @@ const createTemporaryData = () => ({
 
 //Метод создаёт массив объектов, длина которого задана константой OBJECT_ARRAY_COUNTER
 Array.from({length: OBJECT_ARRAY_COUNTER}, createTemporaryData);
-
-console.log(Array.from({length: OBJECT_ARRAY_COUNTER}, createTemporaryData));
