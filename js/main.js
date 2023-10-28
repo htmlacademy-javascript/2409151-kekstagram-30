@@ -13,7 +13,7 @@ const NAMES = ['Кирилл', 'Александр', 'Ольга', 'Олег', '
   'Владимир', 'Сергей', 'Марина', 'Константин', 'Дмитрий', 'Иван', 'Максим', 'Руслан', 'Андрей', 'Евгений', 'Виктор',
   'Снежана', 'Мария', 'Валентина', 'Светлана'];
 
-const OBJECT_ARRAY_COUNTER = 35;
+const OBJECT_ARRAY_COUNTER = 25;
 
 /* функцию получения случайного числа я честно взял из: "Учебный проект: нас - орда". Здесь сам ничего не придумывал.
 Если такой вариант не проходит, ну тогда буду пытаться изобретать свой велосипед*/
@@ -27,19 +27,18 @@ const getRandomInteger = (a, b) => {
 //Функция createTemporaryData создаёт один объект
 const createTemporaryData = () => ({
   id: getRandomInteger(1, 25),
-  url: 'photos/' + getRandomInteger(1, 25) + '.jpg',
+  url: `photos/'${getRandomInteger(1, 25)}.jpg`,
   description: DESCRIPTION_PHOTOS[getRandomInteger(0, DESCRIPTION_PHOTOS.length - 1)],
   likes: getRandomInteger(15, 200),
   comments: [{
     id: getRandomInteger(1, 300),
-    avatar: 'img/avatar-' + getRandomInteger(1, 6) + '.svg',
+    avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
     message: MESSAGE[getRandomInteger(0, MESSAGE.length - 1)],
     name: NAMES[getRandomInteger(0, NAMES.length - 1)],
   }]
 });
 
 //Метод создаёт массив объектов, длина которого задана константой OBJECT_ARRAY_COUNTER
-const arrayOfObjects = Array.from({length: OBJECT_ARRAY_COUNTER}, createTemporaryData);
+Array.from({length: OBJECT_ARRAY_COUNTER}, createTemporaryData);
 
-console.log(arrayOfObjects);
-
+console.log(Array.from({length: OBJECT_ARRAY_COUNTER}, createTemporaryData));
