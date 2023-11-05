@@ -15,6 +15,14 @@ const NAMES = ['Кирилл', 'Александр', 'Ольга', 'Олег', '
 
 const OBJECT_ARRAY_COUNTER = 25;
 
+const arrayOfIds = [];
+/*Создаём массив целых последовательных чисел. Далее, функцией getRandomInteger(), извлекаем
+из него случайным образом числа.
+*/
+for (let i = 1; i <= OBJECT_ARRAY_COUNTER; i++) {
+  arrayOfIds.push(i);
+}
+
 /* функцию получения случайного числа я честно взял из: "Учебный проект: нас - орда". Здесь сам ничего не придумывал.
 Если такой вариант не проходит, ну тогда буду пытаться изобретать свой велосипед*/
 const getRandomInteger = (a, b) => {
@@ -25,18 +33,25 @@ const getRandomInteger = (a, b) => {
 };
 
 //Функция createTemporaryData создаёт один объект
-const createTemporaryData = () => ({
-  id: getRandomInteger(1, 25),
-  url: `photos/'${getRandomInteger(1, 25)}.jpg`,
-  description: DESCRIPTION_PHOTOS[getRandomInteger(0, DESCRIPTION_PHOTOS.length - 1)],
-  likes: getRandomInteger(15, 200),
-  comments: [{
-    id: getRandomInteger(1, 300),
-    avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-    message: MESSAGE[getRandomInteger(0, MESSAGE.length - 1)],
-    name: NAMES[getRandomInteger(0, NAMES.length - 1)],
-  }]
-});
+const createTemporaryData = () => {
+  const index = getRandomInteger(0, arrayOfIds.length - 1);
+  const id = arrayOfIds[index];
+  const url = arrayOfIds[index];
+  const commentId = arrayOfIds[index];
+  arrayOfIds.splice(index, 1);
+  return {
+    id: id,
+    url: `photos/'${url}.jpg`,
+    description: DESCRIPTION_PHOTOS[getRandomInteger(0, DESCRIPTION_PHOTOS.length - 1)],
+    likes: getRandomInteger(15, 200),
+    comments: [{
+      id: commentId,
+      avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+      message: MESSAGE[getRandomInteger(0, MESSAGE.length - 1)],
+      name: NAMES[getRandomInteger(0, NAMES.length - 1)],
+    }]
+  };
+};
 
 //Метод создаёт массив объектов, длина которого задана константой OBJECT_ARRAY_COUNTER
-Array.from({length: OBJECT_ARRAY_COUNTER}, createTemporaryData);
+console.log(Array.from({length: OBJECT_ARRAY_COUNTER}, createTemporaryData));
