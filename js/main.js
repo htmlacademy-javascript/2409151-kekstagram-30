@@ -32,7 +32,7 @@ for (let i = 1; i <= POST_ID_COUNTER; i++) {
 */
 const commentIds = [];
 
-for (let i = 1; i <= COMMENT_ID_COUNTER; i++) {
+for (let i = 1; i <= 3333; i++) {
   commentIds.push(i);
 }
 
