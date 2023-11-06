@@ -13,14 +13,27 @@ const NAMES = ['Кирилл', 'Александр', 'Ольга', 'Олег', '
   'Владимир', 'Сергей', 'Марина', 'Константин', 'Дмитрий', 'Иван', 'Максим', 'Руслан', 'Андрей', 'Евгений', 'Виктор',
   'Снежана', 'Мария', 'Валентина', 'Светлана'];
 
-const OBJECT_ARRAY_COUNTER = 25;
+const POST_ID_COUNTER = 25;
 
-const arrayOfIds = [];
-/*Создаём массив целых последовательных чисел. Далее, функцией getRandomInteger(), извлекаем
+const COMMENT_ID_COUNTER = 30;
+
+
+/*Создаём массив целых последовательных чисел для генерации id поста. Далее, функцией getRandomInteger(), извлекаем
 из него случайным образом числа.
 */
-for (let i = 1; i <= OBJECT_ARRAY_COUNTER; i++) {
-  arrayOfIds.push(i);
+const postIds = [];
+
+for (let i = 1; i <= POST_ID_COUNTER; i++) {
+  postIds.push(i);
+}
+
+/*Создаём массив целых последовательных чисел для генерации id комментария. Далее, функцией getRandomInteger(), извлекаем
+из него случайным образом числа.
+*/
+const commentIds = [];
+
+for (let i = 1; i <= COMMENT_ID_COUNTER; i++) {
+  commentIds.push(i);
 }
 
 /* функцию получения случайного числа я честно взял из: "Учебный проект: нас - орда". Здесь сам ничего не придумывал.
@@ -32,26 +45,33 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
+//функция создаёт один объект с комментариями
+const getComment = () => {
+  const index = getRandomInteger(0, commentIds.length - 1);
+  const commentId = commentIds[index];
+  commentIds.splice(index, 1);
+  return {
+    id: commentId,
+    avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
+    message: MESSAGE[getRandomInteger(0, MESSAGE.length - 1)],
+    name: NAMES[getRandomInteger(0, NAMES.length - 1)],
+  };
+};
+
 //Функция createTemporaryData создаёт один объект
 const createTemporaryData = () => {
-  const index = getRandomInteger(0, arrayOfIds.length - 1);
-  const id = arrayOfIds[index];
-  const url = arrayOfIds[index];
-  const commentId = arrayOfIds[index];
-  arrayOfIds.splice(index, 1);
+  const index = getRandomInteger(0, postIds.length - 1);
+  const id = postIds[index];
+  const url = postIds[index];
+  postIds.splice(index, 1);
   return {
     id: id,
     url: `photos/'${url}.jpg`,
     description: DESCRIPTION_PHOTOS[getRandomInteger(0, DESCRIPTION_PHOTOS.length - 1)],
     likes: getRandomInteger(15, 200),
-    comments: [{
-      id: commentId,
-      avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-      message: MESSAGE[getRandomInteger(0, MESSAGE.length - 1)],
-      name: NAMES[getRandomInteger(0, NAMES.length - 1)],
-    }]
+    comments: Array.from({length: getRandomInteger(0, COMMENT_ID_COUNTER)}, getComment)
   };
 };
 
-//Метод создаёт массив объектов, длина которого задана константой OBJECT_ARRAY_COUNTER
-Array.from({length: OBJECT_ARRAY_COUNTER}, createTemporaryData);
+//Метод создаёт массив объектов, длина которого задана константой POST_ID_COUNTER
+Array.from({length: POST_ID_COUNTER}, createTemporaryData);
