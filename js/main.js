@@ -76,4 +76,4 @@ const createTemporaryData = () => {
 };
 
 //Метод создаёт массив объектов, длина которого задана константой POST_ID_COUNTER
-console.log(Array.from({length: POST_ID_COUNTER}, createTemporaryData));
+Array.from({length: POST_ID_COUNTER}, createTemporaryData);
