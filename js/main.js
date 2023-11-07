@@ -15,7 +15,9 @@ const NAMES = ['Кирилл', 'Александр', 'Ольга', 'Олег', '
 
 const POST_ID_COUNTER = 25;
 
-const COMMENT_ID_COUNTER = 30;
+const COMMENT_COUNTER = 30;
+
+const COMMENT_ID_COUNTER = 3333;
 
 
 /*Создаём массив целых последовательных чисел для генерации id поста. Далее, функцией getRandomInteger(), извлекаем
@@ -32,7 +34,7 @@ for (let i = 1; i <= POST_ID_COUNTER; i++) {
 */
 const commentIds = [];
 
-for (let i = 1; i <= 3333; i++) {
+for (let i = 1; i <= COMMENT_ID_COUNTER; i++) {
   commentIds.push(i);
 }
 
@@ -69,9 +71,9 @@ const createTemporaryData = () => {
     url: `photos/'${url}.jpg`,
     description: DESCRIPTION_PHOTOS[getRandomInteger(0, DESCRIPTION_PHOTOS.length - 1)],
     likes: getRandomInteger(15, 200),
-    comments: Array.from({length: getRandomInteger(0, COMMENT_ID_COUNTER)}, getComment)
+    comments: Array.from({length: getRandomInteger(0, COMMENT_COUNTER)}, getComment)
   };
 };
 
 //Метод создаёт массив объектов, длина которого задана константой POST_ID_COUNTER
-Array.from({length: POST_ID_COUNTER}, createTemporaryData);
+console.log(Array.from({length: POST_ID_COUNTER}, createTemporaryData));
