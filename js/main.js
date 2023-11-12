@@ -1,3 +1,3 @@
-import {ArrayOfObject} from './utils.js';
+import {createArrayOfPosts} from './data.js';
 
-ArrayOfObject();
+createArrayOfPosts();
