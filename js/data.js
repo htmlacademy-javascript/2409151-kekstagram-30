@@ -1,8 +1,8 @@
 import { getRandomInteger } from './utils.js';
 
-const DESCRIPTION_PHOTOS = ['Москва', 'Санкт-Петербург', 'Казань', 'Волгоград', 'Екатеринбург', 'Сочи', 'Карелия', 'Байкал',
-  'Камчатка', 'Алтай', 'Крым', 'Севастополь', 'Новосибирск', 'Иркутск', 'Владивосток', 'Московский Кремль', 'Эрмитаж', 'Петродворец',
-  'Дальневосточный океанариум', 'Архыз', 'Урал', 'Калиниград', 'Кипр', 'Анталья', 'Хургада', 'Омск'];
+const DESCRIPTION_PHOTOS = ['Москва', 'Санкт-Петербург', 'Вот это тачка!', 'Волгоград', 'Ах, какая девушка!', 'Сочи', 'Фантастический закат', 'Байкал',
+  'Хорошо сидим!', 'Алтай', 'Крым', 'Севастополь', 'Ух ты какая!', 'Иркутск', 'А это ваш обед', 'Московский Кремль', 'Эрмитаж', 'Петродворец',
+  'Всей семьёй на отдыхе', 'Наводнение в Уссурийске', 'Урал', 'Калиниград', 'А в синем небе серебристый самолёт', 'А компот?', 'Хургада', 'Омск'];
 
 const MESSAGE = ['Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -68,13 +68,14 @@ const createTemporaryData = () => {
   postIds.splice(index, 1);
   return {
     id: id,
-    url: `photos/'${url}.jpg`,
+    url: `./photos/${url}.jpg`,
     description: getDescriptionPhotos(),
     likes: getRandomInteger(15, 200),
     comments: Array.from({length: getRandomInteger(0, COMMENT_COUNTER)}, getComment)
   };
 };
 
+// Создаём массив постов
 const createArrayOfPosts = () => Array.from({length: POST_ID_COUNTER}, createTemporaryData);
 
 export {createArrayOfPosts};
